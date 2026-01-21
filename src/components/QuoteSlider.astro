@@ -1,0 +1,106 @@
+---
+const testimonials = [
+  {
+    quote: "Arieke weet als geen ander de zaal te bespelen. Haar energie is aanstekelijk.",
+    author: "Gemeente Rotterdam",
+    role: "Opdrachtgever",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Scherp, inhoudelijk sterk en altijd met een lach. Een top dagvoorzitter.",
+    author: "Ministerie van I&W",
+    role: "Event Manager",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Ze voelt de zaal perfect aan en zorgt voor échte verbinding. Een professional pur sang.",
+    author: "Bevrijdingsfestival Zeeland",
+    role: "Organisatie",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Een energieke dagvoorzitter die complexe thema's begrijpelijk maakt voor iedereen.",
+    author: "Ministerie van VWS",
+    role: "Communicatieadviseur",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Dankzij haar training sta ik nu vol zelfvertrouwen op het podium.",
+    author: "Sarah Jansen",
+    role: "Ondernemer",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Scherp, speels en altijd met de juiste toon. Precies wat ons event nodig had.",
+    author: "Nationale Klimaatweek",
+    role: "Projectleider",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Professioneel, goed voorbereid en een genot om mee te werken.",
+    author: "ABN Amro / CIRCL",
+    role: "Event Coördinator",
+    image: "https://images.unsplash.com/photo-1557862921-37829c790f19?auto=format&fit=crop&w=100&h=100&q=80"
+  },
+  {
+    quote: "Een dagvoorzitter met impact. Ze zette onze bijeenkomst echt in beweging.",
+    author: "Adrz Ziekenhuis",
+    role: "Raad van Bestuur",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80"
+  }
+];
+---
+
+<div class="relative w-full overflow-hidden" id="quote-slider">
+    <div class="flex justify-end gap-2 mb-4 px-4 md:px-0">
+        <button id="prev-quote" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Previous">←</button>
+        <button id="next-quote" class="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center hover:bg-black hover:text-white transition-colors" aria-label="Next">→</button>
+    </div>
+
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar px-4 md:px-0 scroll-smooth" id="slider-container">
+        {testimonials.map((t) => (
+            <div class="snap-center shrink-0 w-[85vw] md:w-[500px] bg-white rounded-3xl p-10 border border-gray-100 shadow-xl shadow-gray-100/50 flex flex-col justify-between">
+                <div>
+                    <svg class="w-10 h-10 text-brand-pink mb-6 opacity-100" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z" />
+                    </svg>
+                    <p class="text-xl md:text-2xl font-light text-gray-700 leading-relaxed">
+                        "{t.quote}"
+                    </p>
+                </div>
+                <div class="mt-8 flex items-center gap-4">
+                    <img src={t.image} alt={t.author} class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-md" />
+                    <div>
+                        <p class="font-bold text-gray-900">{t.author}</p>
+                        <p class="text-sm text-gray-500 uppercase tracking-widest">{t.role}</p>
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    const container = document.getElementById('slider-container');
+    const prevBtn = document.getElementById('prev-quote');
+    const nextBtn = document.getElementById('next-quote');
+
+    if (container && prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+            container.scrollBy({ left: -400, behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            container.scrollBy({ left: 400, behavior: 'smooth' });
+        });
+    }
+</script>
+
+<style>
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>

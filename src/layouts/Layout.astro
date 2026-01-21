@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Arieke van Liere - Bewegingsbouwer" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Fontshare CDN for General Sans -->
+		<link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+		
+		<title>{title}</title>
+	</head>
+	<body class="antialiased min-h-screen flex flex-col">
+		<slot />
+	</body>
+</html>

@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'MADE Soulmaze Brush';
+    src: url('/fonts/made-soulmaze-brush.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+    --color-brand-pink: #D81AB4;
+    --color-brand-green: #26D37C;
+    --font-sans: 'General Sans', sans-serif;
+    --font-display: 'General Sans', sans-serif;
+    --font-brush: 'MADE Soulmaze Brush', cursive;
+
+    --animate-fade-in: fade-in 0.5s ease-out;
+    --animate-slide-up: slide-up 0.5s ease-out;
+
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-up {
+        from {
+            transform: translateY(20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes marquee {
+        from {
+            transform: translateX(0);
+        }
+
+        to {
+            transform: translateX(-50%);
+        }
+    }
+}
+
+@utility container-custom {
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 80rem;
+    /* max-w-7xl */
+}
+
+@utility mask-linear-fade {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+@utility text-stroke {
+    -webkit-text-stroke: 1px currentColor;
+    color: transparent;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: #1a1a1a;
+    background-color: white;
+}

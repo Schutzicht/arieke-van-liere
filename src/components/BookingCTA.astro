@@ -1,0 +1,42 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<div id="floating-cta" class="fixed bottom-8 right-8 z-40 transform translate-y-24 transition-transform duration-500 opacity-0 pointer-events-none">
+    <Button href="#contact" variant="primary" class="shadow-2xl shadow-brand-pink/40 animate-pulse-slow pointer-events-auto flex items-center gap-2 !px-6 !py-4">
+        <span>Boek Arieke</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+    </Button>
+</div>
+
+<script>
+    const cta = document.getElementById('floating-cta');
+    const hero = document.getElementById('hero');
+
+    if (cta && hero) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    cta.classList.remove('translate-y-24', 'opacity-0');
+                } else {
+                    cta.classList.add('translate-y-24', 'opacity-0');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        observer.observe(hero);
+    }
+</script>
+
+<style>
+    .animate-pulse-slow {
+        animation: pulse-shadow 3s infinite;
+    }
+    @keyframes pulse-shadow {
+        0% { box-shadow: 0 0 0 0 rgba(216, 26, 180, 0.4); }
+        70% { box-shadow: 0 0 0 10px rgba(216, 26, 180, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(216, 26, 180, 0); }
+    }
+</style>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  items: { src: string; alt: string }[];
+  speed?: number; // duration in seconds
+  direction?: 'left' | 'right';
+  class?: string;
+}
+
+const { 
+  items, 
+  speed = 40, 
+  direction = 'left',
+  class: className = '' 
+} = Astro.props;
+
+// Duplicate items multiple times to ensure we fill the screen and loop seamlessly
+// Using 4 copies: [Set 1][Set 2][Set 3][Set 4]
+// We animate from 0 to -25% (width of Set 1). 
+// When Set 1 is fully off-screen, Set 2 is exactly where Set 1 started.
+// This works regardless of screen width, provided 3 sets fill the screen (which 4 sets safely ensures).
+const allItems = [...items, ...items, ...items, ...items];
+---
+
+<div class:list={["w-full overflow-hidden mask-linear-fade select-none group bg-white", className]}>
+  <div 
+    class="flex gap-12 w-fit items-center whitespace-nowrap will-change-transform py-4"
+    style={{
+        animation: `marquee-scroll ${speed}s linear infinite`,
+        animationDirection: direction === 'right' ? 'reverse' : 'normal',
+        width: 'max-content' /* Ensure the container is as wide as its content */
+    }}
+    onmouseenter="this.style.animationPlayState = 'paused'"
+    onmouseleave="this.style.animationPlayState = 'running'"
+  >
+    {allItems.map((item, index) => (
+      <div class="relative flex-shrink-0 hover:scale-110 transition-all duration-300">
+        <img 
+            src={item.src} 
+            alt={item.alt} 
+            class="h-10 md:h-12 w-auto object-contain max-w-[150px]"
+            loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+    @keyframes marquee-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            /* Move exactly 1/4th of the total width (since we have 4 sets) */
+            transform: translateX(-25%);
+        }
+    }
+</style>

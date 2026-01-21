@@ -1,0 +1,133 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<section class="min-h-screen flex items-center relative overflow-hidden bg-slate-50" id="hero">
+    
+    <!-- Animated Mesh Gradient Background -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <!-- Pink blob removed -->
+        <div class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-green/5 rounded-full blur-[120px] animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="absolute inset-0 bg-[url('/assets/images/mosaic-pattern.svg')] opacity-5 bg-repeat bg-[length:100px_100px]"></div>
+    </div>
+
+    <!-- Mouse Parallax Container -->
+    <div class="container-custom relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full pt-20" id="parallax-container">
+        
+        <!-- Typography -->
+        <div class="space-y-8 animate-slide-up relative z-20">
+            <span class="inline-block px-4 py-1.5 bg-brand-green text-white rounded-full text-base font-display tracking-wide uppercase shadow-lg shadow-brand-green/20">
+                Bewegingsbouwer
+            </span>
+            
+            <h1 class="text-6xl lg:text-8xl font-display leading-[0.9] text-gray-900 tracking-tight">
+                WIE WIL JIJ<br>
+                <span class="relative inline-block text-brand-pink font-brush tracking-normal transform rotate-[-2deg] origin-center px-2 whitespace-nowrap">IN BEWEGING</span><br>
+                BRENGEN?
+            </h1>
+            
+            <!-- Decorative Icon: Megafoon -->
+            <img src="/assets/icons/brand/megafoon zwart met groen.png" alt="" class="absolute -top-12 -right-4 lg:-right-12 w-16 lg:w-24 rotate-12 animate-pulse-slow hidden md:block select-none pointer-events-none" />
+            
+            <p class="text-xl text-gray-600 max-w-lg leading-relaxed font-light">
+                Ik ben Arieke van Liere. Dagvoorzitter, presentator en impactmaker. 
+                Ik zet zalen, mensen en ideeën in beweging.
+            </p>
+            
+            <div class="flex flex-wrap gap-4 pt-4">
+                <Button href="#contact" variant="primary" class="shadow-xl shadow-brand-pink/20 hover:scale-105">
+                    Boek mij nu
+                </Button>
+                <Button href="#expertise" variant="outline" class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white">
+                    Bekijk expertise
+                </Button>
+            </div>
+            
+            <!-- Credentials / Trust -->
+            <div class="pt-8 flex items-center gap-4 text-sm font-semibold text-gray-500">
+                <div class="flex -space-x-3">
+                    <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client 1" />
+                    <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client 2" />
+                    <div class="w-10 h-10 rounded-full bg-brand-green text-white flex items-center justify-center border-2 border-white">+200</div>
+                </div>
+                <span>Tevreden opdrachtgevers gingen je voor</span>
+            </div>
+        </div>
+
+        <!-- Parallax Image -->
+        <div class="relative h-[600px] lg:h-[800px] w-full flex items-center justify-center perspective-1000">
+            <!-- Back Layer (Abstract shapes) -->
+            <div class="parallax-layer absolute inset-0 flex items-center justify-center" data-depth="0.1">
+                 <div class="w-[80%] h-[80%] border-2 border-brand-pink/20 rounded-full"></div>
+            </div>
+            
+            <!-- Middle Layer (Main Image) -->
+            <div class="parallax-layer relative z-10 w-full h-full flex items-center justify-center" data-depth="0.3">
+               <div class="relative w-[90%] h-[90%] md:w-[80%] md:h-[90%]">
+                    <!-- Image Mask / Shape -->
+                    <div class="absolute inset-0 bg-gray-200 rounded-[3rem] overflow-hidden shadow-2xl rotate-3 transition-transform duration-700 hover:rotate-0">
+                         <img 
+                            src="/assets/images/hero-arieke.jpg" 
+                            alt="Arieke van Liere"
+                            class="w-full h-full object-cover scale-110"
+                        />
+                         <!-- Gradient Overlay Removed -->
+                    </div>
+               </div>
+            </div>
+            
+            <!-- Front Layer (Floating Elements) -->
+            <div class="parallax-layer absolute bottom-20 -left-10 z-20 bg-white p-6 rounded-2xl shadow-xl max-w-xs animate-bounce-slow" data-depth="0.6">
+                <p class="font-display text-2xl text-brand-pink mb-1">10+ JAAR</p>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Ervaring on stage</p>
+            </div>
+
+            <div class="parallax-layer absolute top-40 right-0 z-0 opacity-50" data-depth="0.2">
+                <svg width="200" height="200" viewBox="0 0 200 200" class="fill-brand-green/20 animate-spin-slow">
+                    <path d="M100 0L129.39 70.61L200 100L129.39 129.39L100 200L70.61 129.39L0 100L70.61 70.61L100 0Z" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <!-- Scroll Indicator Removed -->
+</section>
+
+<style>
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+    .animate-spin-slow {
+        animation: spin 20s linear infinite;
+    }
+    .animate-bounce-slow {
+        animation: bounce 3s infinite;
+    }
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+</style>
+
+<script>
+    // Simple Mouse Parallax Script
+    const container = document.getElementById('hero');
+    const layers = document.querySelectorAll('.parallax-layer');
+
+    container?.addEventListener('mousemove', (e) => {
+        // @ts-ignore
+        const x = (window.innerWidth - e.pageX * 2) / 100;
+        // @ts-ignore
+        const y = (window.innerHeight - e.pageY * 2) / 100;
+
+        layers.forEach((layer) => {
+            // @ts-ignore
+            const depth = layer.getAttribute('data-depth') || 0.2;
+            const xOffset = x * depth * 8; 
+            const yOffset = y * depth * 8;
+            // @ts-ignore
+            layer.style.transform = `translateX(${xOffset}px) translateY(${yOffset}px)`;
+        });
+    });
+</script>
