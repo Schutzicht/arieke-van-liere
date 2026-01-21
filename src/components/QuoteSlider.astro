@@ -86,12 +86,38 @@ const testimonials = [
     const nextBtn = document.getElementById('next-quote');
 
     if (container && prevBtn && nextBtn) {
+        const scrollAmount = 400;
+
         prevBtn.addEventListener('click', () => {
-            container.scrollBy({ left: -400, behavior: 'smooth' });
+            container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            resetTimer();
         });
+
         nextBtn.addEventListener('click', () => {
-            container.scrollBy({ left: 400, behavior: 'smooth' });
+            // Check if we are at the end, if so scroll to start
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                 container.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                 container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+            resetTimer();
         });
+
+        // Auto Rotation
+        let autoScrollTimer = setInterval(() => {
+            nextBtn.click();
+        }, 5000);
+
+        function resetTimer() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                nextBtn.click();
+            }, 5000);
+        }
+
+        // Pause on hover
+        container.addEventListener('mouseenter', () => clearInterval(autoScrollTimer));
+        container.addEventListener('mouseleave', resetTimer);
     }
 </script>
 

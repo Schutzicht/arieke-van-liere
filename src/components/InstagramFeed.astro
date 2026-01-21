@@ -41,7 +41,7 @@ const posts = [
 
 <section class="py-24 bg-white overflow-hidden">
     <div class="container-custom">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
             <div>
                 <span class="text-brand-pink font-bold tracking-widest uppercase text-sm mb-2 block">Socials</span>
                 <h2 class="text-4xl font-display">Volg de <br><span class="text-brand-pink">beweging</span></h2>
@@ -54,9 +54,10 @@ const posts = [
             </a>
         </div>
         
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <!-- Mobile: Carousel / Desktop: Grid -->
+        <div class="flex md:grid md:grid-cols-3 lg:grid-cols-6 gap-4 overflow-x-auto md:overflow-visible pb-4 md:pb-0 snap-x snap-mandatory hide-scrollbar" id="insta-feed">
             {posts.map((post) => (
-                <a href={post.link} target="_blank" class="group relative aspect-square overflow-hidden rounded-2xl block bg-gray-100">
+                <a href={post.link} target="_blank" class="group relative flex-shrink-0 w-[45%] md:w-auto aspect-square overflow-hidden rounded-2xl block bg-gray-100 snap-start">
                     <img 
                         src={post.image} 
                         alt={post.caption} 
@@ -79,3 +80,17 @@ const posts = [
         </div>
     </div>
 </section>
+
+<script>
+    const feed = document.getElementById('insta-feed');
+    if (feed && window.matchMedia('(max-width: 768px)').matches) {
+        let scrollAmount = 0;
+        setInterval(() => {
+            if (feed.scrollLeft + feed.clientWidth >= feed.scrollWidth - 10) {
+                feed.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                feed.scrollBy({ left: feed.clientWidth / 2, behavior: 'smooth' });
+            }
+        }, 4000);
+    }
+</script>

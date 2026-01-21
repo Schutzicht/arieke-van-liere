@@ -12,7 +12,7 @@ import Button from './ui/Button.astro';
     </div>
 
     <!-- Mouse Parallax Container -->
-    <div class="container-custom relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full pt-20" id="parallax-container">
+    <div class="container-custom relative z-10 grid lg:grid-cols-2 gap-12 items-center h-full pt-32 lg:pt-20" id="parallax-container">
         
         <!-- Typography -->
         <div class="space-y-8 animate-slide-up relative z-20">
@@ -55,7 +55,7 @@ import Button from './ui/Button.astro';
         </div>
 
         <!-- Parallax Image -->
-        <div class="relative h-[600px] lg:h-[800px] w-full flex items-center justify-center perspective-1000">
+        <div class="relative h-[400px] lg:h-[800px] w-full flex items-center justify-center perspective-1000 mt-8 lg:mt-0">
             <!-- Back Layer (Abstract shapes) -->
             <div class="parallax-layer absolute inset-0 flex items-center justify-center" data-depth="0.1">
                  <div class="w-[80%] h-[80%] border-2 border-brand-pink/20 rounded-full"></div>
@@ -77,9 +77,9 @@ import Button from './ui/Button.astro';
             </div>
             
             <!-- Front Layer (Floating Elements) -->
-            <div class="parallax-layer absolute bottom-20 -left-10 z-20 bg-white p-6 rounded-2xl shadow-xl max-w-xs animate-bounce-slow" data-depth="0.6">
-                <p class="font-display text-2xl text-brand-pink mb-1">10+ JAAR</p>
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Ervaring on stage</p>
+            <div class="parallax-layer absolute bottom-10 left-4 lg:bottom-20 lg:-left-10 z-20 bg-white p-4 lg:p-6 rounded-2xl shadow-xl max-w-[200px] lg:max-w-xs animate-bounce-slow" data-depth="0.6">
+                <p class="font-display text-xl lg:text-2xl text-brand-pink mb-1">10+ JAAR</p>
+                <p class="text-[10px] lg:text-xs text-gray-500 font-bold uppercase tracking-wider">Ervaring on stage</p>
             </div>
 
             <div class="parallax-layer absolute top-40 right-0 z-0 opacity-50" data-depth="0.2">
