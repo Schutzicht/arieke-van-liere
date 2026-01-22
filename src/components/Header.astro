@@ -95,22 +95,28 @@ const navItems = lang === 'en' ? [
     link.addEventListener('click', toggleMenu);
   });
 
-  // Sticky Header Logic (Hide on Scroll Down, Show on Scroll Up)
+  // Sticky Header Logic (Mobile Only: Hide on Scroll Down, Show on Scroll Up)
   let lastScrollTop = 0;
   const SCROLL_THRESHOLD = 50; // Minimum scroll before action
 
   window.addEventListener('scroll', () => {
+    // Disable this behavior on desktop (keep sticky)
+    if (window.innerWidth >= 768) {
+        header?.classList.remove('-translate-y-[200%]');
+        return;
+    }
+
     const scrollTop = window.scrollY || document.documentElement.scrollTop;
     
     // Ignore small scroll movements or negative scrolling (rubber banding)
     if (Math.abs(scrollTop - lastScrollTop) <= 5 || scrollTop < 0) return;
 
     if (scrollTop > lastScrollTop && scrollTop > SCROLL_THRESHOLD) {
-      // Scrolling Down - Hide Header
-      header?.classList.add('-translate-y-full');
+      // Scrolling Down - Hide Header completely (200% handles the top-4 offset)
+      header?.classList.add('-translate-y-[200%]');
     } else {
       // Scrolling Up - Show Header
-      header?.classList.remove('-translate-y-full');
+      header?.classList.remove('-translate-y-[200%]');
     }
     
     lastScrollTop = scrollTop;
