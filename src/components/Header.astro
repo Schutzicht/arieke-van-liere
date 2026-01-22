@@ -1,6 +1,7 @@
 ---
 import Button from './ui/Button.astro';
 import LanguageSwitch from './LanguageSwitch.astro';
+import AccessibilityWidget from './AccessibilityWidget.astro';
 
 const { lang = 'nl' } = Astro.props;
 
@@ -33,6 +34,7 @@ const navItems = lang === 'en' ? [
         ))}
         
         <div class="border-l border-gray-200 h-6 mx-2"></div>
+        <AccessibilityWidget />
         <LanguageSwitch />
         
         <Button href="#contact" variant="primary" class="!py-2 !px-5 text-xs uppercase tracking-wide">

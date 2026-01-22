@@ -1,12 +1,17 @@
 ---
 ---
 
-<div id="a11y-widget" class="fixed bottom-4 left-4 z-50 font-sans">
-    <!-- Menu (Hidden by default) -->
-    <div id="a11y-menu" class="hidden mb-4 bg-white rounded-2xl shadow-2xl border border-gray-200 w-64 overflow-hidden transform transition-all duration-300 origin-bottom-left scale-90 opacity-0">
-        <div class="bg-gray-100 px-4 py-3 border-b border-gray-200 flex justify-between items-center">
-            <h3 class="font-bold text-gray-900 text-sm">Toegankelijkheid</h3>
-            <button id="close-a11y" class="text-gray-500 hover:text-gray-900 p-1">
+<div id="a11y-widget" class="relative group z-50 font-sans">
+    <!-- Toggle Button (Header Style) -->
+    <button id="a11y-trigger" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-green/50" aria-label="Toegankelijkheidsopties" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+    </button>
+
+    <!-- Menu (Dropdown) -->
+    <div id="a11y-menu" class="absolute right-0 top-full mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden transform transition-all duration-200 origin-top-right scale-95 opacity-0 invisible pointer-events-none">
+        <div class="bg-gray-50 px-4 py-3 border-b border-gray-100 flex justify-between items-center">
+            <h3 class="font-bold text-gray-900 text-xs uppercase tracking-wider">Toegankelijkheid</h3>
+             <button id="close-a11y" class="text-gray-400 hover:text-gray-700">
                 <span class="sr-only">Sluiten</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
@@ -53,11 +58,6 @@
             </button>
         </div>
     </div>
-
-    <!-- Toggle Button -->
-    <button id="a11y-trigger" class="w-12 h-12 bg-white text-brand-green border-2 border-brand-green rounded-full shadow-lg flex items-center justify-center hover:scale-110 hover:bg-brand-green hover:text-white transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-brand-green/30" aria-label="Toegankelijkheidsopties">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>
-    </button>
 </div>
 
 <script>
@@ -76,28 +76,22 @@
     };
 
     function updateUI() {
-        // Toggle Menu
         if (state.menuOpen) {
-            menu?.classList.remove('hidden');
-            // Small delay for transition
-            setTimeout(() => {
-                menu?.classList.remove('scale-90', 'opacity-0');
-            }, 10);
-            trigger?.classList.add('bg-brand-green', 'text-white');
+            menu?.classList.remove('invisible', 'pointer-events-none', 'scale-95', 'opacity-0');
+            menu?.classList.add('visible', 'pointer-events-auto', 'scale-100', 'opacity-100');
+            trigger?.classList.add('bg-gray-200');
+            trigger?.setAttribute('aria-expanded', 'true');
         } else {
-            menu?.classList.add('scale-90', 'opacity-0');
-             setTimeout(() => {
-                if (!state.menuOpen) menu?.classList.add('hidden');
-            }, 300);
-            trigger?.classList.remove('bg-brand-green', 'text-white');
+            menu?.classList.add('invisible', 'pointer-events-none', 'scale-95', 'opacity-0');
+            menu?.classList.remove('visible', 'pointer-events-auto', 'scale-100', 'opacity-100');
+            trigger?.classList.remove('bg-gray-200');
+            trigger?.setAttribute('aria-expanded', 'false');
         }
 
-        // Apply HTML classes
         document.documentElement.classList.toggle('a11y-high-contrast', state.contrast);
         document.documentElement.classList.toggle('a11y-large-text', state.text);
         document.documentElement.classList.toggle('a11y-reduced-motion', state.motion);
 
-        // Update Toggle Switch Visuals
         updateToggleVisual(toggleContrast, state.contrast);
         updateToggleVisual(toggleText, state.text);
         updateToggleVisual(toggleMotion, state.motion);
@@ -119,18 +113,26 @@
         }
     }
 
-    // Initialize
     updateUI();
 
-    // Event Listeners
-    trigger?.addEventListener('click', () => {
+    trigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
         state.menuOpen = !state.menuOpen;
         updateUI();
     });
 
-    closeBtn?.addEventListener('click', () => {
+    closeBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
         state.menuOpen = false;
         updateUI();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (state.menuOpen && !menu?.contains(e.target as Node) && !trigger?.contains(e.target as Node)) {
+            state.menuOpen = false;
+            updateUI();
+        }
     });
 
     toggleContrast?.addEventListener('click', () => {
