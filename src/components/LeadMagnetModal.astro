@@ -106,7 +106,8 @@ import Button from './ui/Button.astro';
     const STORAGE_KEY = 'arieke_lead_magnet_dimissed';
 
     function showModal() {
-        if (localStorage.getItem(STORAGE_KEY)) return;
+        // PERMANENT DEBUG FOR CLIENT: Force show every time
+        // if (localStorage.getItem(STORAGE_KEY)) return;
         
         modal?.classList.remove('hidden');
         setTimeout(() => {
