@@ -142,6 +142,57 @@ body {
     scroll-behavior: auto !important;
 }
 
+/* Widget & Header Specific High Contrast Overrides */
+
+/* Force Header to match High Contrast Theme */
+.a11y-high-contrast #nav-container {
+    background-color: #000000 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+.a11y-high-contrast #nav-container a,
+.a11y-high-contrast #nav-container .text-gray-800,
+.a11y-high-contrast #nav-container button:not(#a11y-trigger) {
+    color: #FFFF00 !important;
+}
+
+.a11y-high-contrast #nav-container .border-l {
+    border-color: #FFFF00 !important;
+}
+
+.a11y-high-contrast .group-hover\:text-brand-pink:hover {
+    color: #FFFFFF !important;
+}
+
+/* Dropdown Menu - styles */
+.a11y-high-contrast #a11y-menu {
+    background-color: #000000 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+.a11y-high-contrast #a11y-menu * {
+    color: #FFFF00 !important;
+}
+
+.a11y-high-contrast #a11y-menu button:hover {
+    background-color: #FFFF00 !important;
+}
+
+.a11y-high-contrast #a11y-menu button:hover * {
+    color: #000000 !important;
+}
+
+/* Trigger Button - Inverted for Visibility (Yellow BG, Black Icon) */
+.a11y-high-contrast #a11y-trigger {
+    background-color: #FFFF00 !important;
+    border: 2px solid #FFFFFF !important;
+    color: #000000 !important;
+}
+
+.a11y-high-contrast #a11y-trigger svg {
+    stroke: #000000 !important;
+}
+
 html {
     scroll-behavior: smooth;
 }
