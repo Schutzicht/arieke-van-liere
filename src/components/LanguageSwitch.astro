@@ -17,13 +17,13 @@ function getSwitchUrl(targetLang: 'nl' | 'en') {
 <div class="flex items-center gap-1 bg-gray-100 rounded-full p-1" id="lang-switch">
     <a 
         href={getSwitchUrl('nl')} 
-        class={`px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'nl' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+        class={`px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'nl' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-700 hover:text-gray-900'}`}
     >
         NL
     </a>
     <a 
         href={getSwitchUrl('en')} 
-        class={`px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-500 hover:text-gray-900'}`}
+        class={`px-3 py-1 rounded-full text-xs font-bold transition-all ${currentLang === 'en' ? 'bg-white shadow-sm text-gray-900' : 'text-gray-700 hover:text-gray-900'}`}
     >
         EN
     </a>
