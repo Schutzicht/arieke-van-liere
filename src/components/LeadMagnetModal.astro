@@ -110,6 +110,8 @@ import Button from './ui/Button.astro';
         // if (localStorage.getItem(STORAGE_KEY)) return;
         
         modal?.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden'); // Lock scroll
+        
         setTimeout(() => {
             backdrop?.classList.remove('opacity-0');
             content?.classList.remove('opacity-0', 'scale-90');
@@ -124,6 +126,7 @@ import Button from './ui/Button.astro';
         
         setTimeout(() => {
             modal?.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden'); // Unlock scroll
         }, 500);
 
         localStorage.setItem(STORAGE_KEY, 'true');
