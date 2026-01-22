@@ -22,10 +22,13 @@ const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl' }
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		
-		<!-- Fontshare CDN for General Sans -->
 		<link rel="preconnect" href="https://api.fontshare.com">
 		<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin="anonymous">
-		<link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+		<!-- Async Font Load -->
+		<link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+		<noscript>
+			<link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap" rel="stylesheet">
+		</noscript>
 		
 		<title>{title}</title>
 	</head>
