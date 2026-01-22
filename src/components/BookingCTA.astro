@@ -13,20 +13,37 @@ import Button from './ui/Button.astro';
 
 <script>
     const cta = document.getElementById('floating-cta');
-    const hero = document.getElementById('hero');
+    const hero = document.getElementById('hero'); // Assuming hero exists
+    const contact = document.getElementById('contact'); // Assuming contact section has id="contact"
 
-    if (cta && hero) {
+    if (cta) {
+        let isHeroVisible = true; // Assume visible initially (top of page)
+        let isContactVisible = false;
+
+        const updateVisibility = () => {
+            if (isHeroVisible || isContactVisible) {
+                // Hide if either is visible
+                cta.classList.add('translate-y-24', 'opacity-0');
+            } else {
+                // Show only if in between
+                cta.classList.remove('translate-y-24', 'opacity-0');
+            }
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (!entry.isIntersecting) {
-                    cta.classList.remove('translate-y-24', 'opacity-0');
-                } else {
-                    cta.classList.add('translate-y-24', 'opacity-0');
+                if (entry.target === hero) {
+                    isHeroVisible = entry.isIntersecting;
+                }
+                if (entry.target === contact) {
+                    isContactVisible = entry.isIntersecting;
                 }
             });
+            updateVisibility();
         }, { threshold: 0.1 });
 
-        observer.observe(hero);
+        if (hero) observer.observe(hero);
+        if (contact) observer.observe(contact);
     }
 </script>
 

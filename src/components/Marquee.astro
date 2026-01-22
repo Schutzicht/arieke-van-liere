@@ -21,31 +21,50 @@ const {
 const allItems = [...items, ...items, ...items, ...items];
 ---
 
-<div class:list={["w-full overflow-hidden mask-linear-fade select-none group bg-white", className]}>
+<div class:list={["w-full mask-linear-fade select-none group bg-white", className]}>
   <div 
-    class="flex gap-12 w-fit items-center whitespace-nowrap will-change-transform py-4"
+    class="flex gap-8 md:gap-12 w-full md:w-fit items-center whitespace-nowrap py-4 overflow-x-auto md:overflow-hidden touch-pan-x scrollbar-hide"
     style={{
-        animation: `marquee-scroll ${speed}s linear infinite`,
-        animationDirection: direction === 'right' ? 'reverse' : 'normal',
-        width: 'max-content' /* Ensure the container is as wide as its content */
+        '--speed': `${speed}s`,
+        '--direction': direction === 'right' ? 'reverse' : 'normal'
     }}
-    onmouseenter="this.style.animationPlayState = 'paused'"
-    onmouseleave="this.style.animationPlayState = 'running'"
   >
-    {allItems.map((item, index) => (
-      <div class="relative flex-shrink-0 hover:scale-110 transition-all duration-300">
-        <img 
-            src={item.src} 
-            alt={item.alt} 
-            class="h-10 md:h-12 w-auto object-contain max-w-[150px]"
-            loading="lazy"
-        />
-      </div>
-    ))}
+    <div 
+        class="flex gap-8 md:gap-12 min-w-full md:animate-marquee" 
+        onmouseenter="this.style.animationPlayState = 'paused'"
+        onmouseleave="this.style.animationPlayState = 'running'"
+    >
+        {allItems.map((item, index) => (
+        <div class="relative flex-shrink-0 hover:scale-110 transition-all duration-300 snap-center">
+            <img 
+                src={item.src} 
+                alt={item.alt} 
+                class="h-10 md:h-12 w-auto object-contain max-w-[120px] md:max-w-[150px]"
+                loading="lazy"
+            />
+        </div>
+        ))}
+    </div>
   </div>
 </div>
 
 <style>
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    @media (min-width: 768px) {
+        .md\:animate-marquee {
+            animation: marquee-scroll var(--speed) linear infinite;
+            animation-direction: var(--direction);
+            width: max-content;
+        }
+    }
+
     @keyframes marquee-scroll {
         0% {
             transform: translateX(0);
