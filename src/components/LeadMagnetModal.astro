@@ -64,14 +64,29 @@ import Button from './ui/Button.astro';
     const closeBtn = document.getElementById('close-modal');
 
     // Configuration
-    const SHOW_DELAY = 10000; // 10 seconds
+    const SHOW_DELAY = 3000; // 3 seconds
     const SCROLL_TRIGGER = 60; // 60% scroll
     const STORAGE_KEY = 'arieke_lead_magnet_dimissed';
 
     function showModal() {
-        if (localStorage.getItem(STORAGE_KEY)) return;
+        console.log('LeadMagnet: Attempting to show modal...');
+        // FOR DEBUGGING: Commented out storage check
+        // if (localStorage.getItem(STORAGE_KEY)) {
+        //    console.log('LeadMagnet: Suppressed by localStorage');
+        //    return;
+        // }
         
-        modal?.classList.remove('hidden');
+        const modal = document.getElementById('lead-magnet-modal');
+        const backdrop = document.getElementById('modal-backdrop');
+        const content = document.getElementById('modal-content');
+
+        if (!modal) {
+             console.error('LeadMagnet: Modal element not found!');
+             return;
+        }
+
+        console.log('LeadMagnet: Showing modal now!');
+        modal.classList.remove('hidden');
         // Give browser time to un-hide before animating opacity
         setTimeout(() => {
             backdrop?.classList.remove('opacity-0');
