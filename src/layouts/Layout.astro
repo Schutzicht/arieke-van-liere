@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import LeadMagnetModal from '../components/LeadMagnetModal.astro';
+import AccessibilityWidget from '../components/AccessibilityWidget.astro';
 import Header from '../components/Header.astro';
 
 interface Props {
@@ -32,5 +33,6 @@ const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl' }
         </slot>
 		<slot />
 		<LeadMagnetModal />
+        <AccessibilityWidget />
 	</body>
 </html>

@@ -72,3 +72,76 @@ body {
     color: #1a1a1a;
     background-color: white;
 }
+
+/* Accessibility Modes */
+
+/* High Contrast: Yellow/Black for maximum visibility */
+.a11y-high-contrast {
+    --color-brand-green: #FFFF00 !important;
+    --color-brand-pink: #FFFFFF !important;
+    filter: contrast(120%);
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.a11y-high-contrast * {
+    background-color: transparent;
+    /* Let body bg shine through mostly, or specifically override */
+}
+
+/* Specific overrides for containers in high contrast */
+.a11y-high-contrast body {
+    background-color: #000000 !important;
+}
+
+.a11y-high-contrast section,
+.a11y-high-contrast div,
+.a11y-high-contrast header,
+.a11y-high-contrast footer {
+    border-color: #FFFFFF !important;
+}
+
+.a11y-high-contrast h1,
+.a11y-high-contrast h2,
+.a11y-high-contrast h3,
+.a11y-high-contrast h4,
+.a11y-high-contrast h5,
+.a11y-high-contrast h6,
+.a11y-high-contrast p,
+.a11y-high-contrast span,
+.a11y-high-contrast a {
+    color: #FFFFFF !important;
+}
+
+.a11y-high-contrast .text-brand-green {
+    color: #FFFF00 !important;
+}
+
+.a11y-high-contrast .bg-brand-green {
+    background-color: #FFFF00 !important;
+    color: #000 !important;
+}
+
+.a11y-high-contrast .text-brand-pink {
+    color: #FFFF00 !important;
+}
+
+/* Large Text */
+.a11y-large-text {
+    font-size: 125%;
+    /* Increases standard REM base */
+}
+
+/* Reduced Motion */
+.a11y-reduced-motion *,
+.a11y-reduced-motion *::before,
+.a11y-reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+}
+
+html {
+    scroll-behavior: smooth;
+}
