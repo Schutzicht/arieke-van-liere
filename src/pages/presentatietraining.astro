@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+---
+
+<Layout title="Arieke van Liere - Presentatietraining">
+    <Header />
+    
+    <main>
+        <!-- Service Hero -->
+        <section class="relative pt-32 pb-20 bg-white overflow-hidden min-h-[60vh] flex items-center border-b border-gray-100">
+             <div class="absolute right-0 top-0 w-1/3 h-full bg-slate-50 skew-x-12 origin-top transform translate-x-20"></div>
+            
+            <div class="container-custom relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-gray-500 font-bold tracking-widest uppercase text-sm mb-4 block animate-fade-in">Trainingen & Coaching</span>
+                    <h1 class="text-5xl md:text-7xl font-display mb-6 animate-slide-up text-gray-900">
+                        Spreek met <span class="text-brand-pink">impact</span> en vertrouwen.
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed animate-slide-up" style="animation-delay: 0.1s;">
+                        Of je nu een pitch moet geven, een team moet toespreken of op een groot podium staat. Ik leer je hoe je jouw verhaal overbrengt op een manier die bij jóu past.
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate-slide-up" style="animation-delay: 0.2s;">
+                        <Button href="#contact" variant="primary">Bekijk aanbod</Button>
+                    </div>
+                </div>
+                <div class="relative">
+                     <img src="/assets/images/hero-arieke.jpg" alt="Coaching" class="rounded-[2rem] shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-500" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Voor wie? -->
+        <section class="py-24 bg-slate-50">
+            <div class="container-custom mb-12 text-center">
+                <h2 class="text-4xl font-display mb-4">Voor iedereen die iets te vertellen heeft</h2>
+            </div>
+             <div class="container-custom grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                    { title: "Professionals", desc: "Die hun presentatieskills willen aanscherpen." },
+                    { title: "Directeuren", desc: "Die hun visie helder willen overbrengen." },
+                    { title: "Activisten", desc: "Die hun boodschap krachtiger willen maken." },
+                    { title: "Studenten", desc: "Die met zelfvertrouwen willen pitchen." }
+                ].map((item, idx) => (
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                         <h3 class="font-bold text-xl mb-2 text-brand-green">{item.title}</h3>
+                         <p class="text-gray-600 text-sm">{item.desc}</p>
+                    </div>
+                ))}
+             </div>
+        </section>
+
+        <BookingCTA />
+    </main>
+    
+    <Footer />
+</Layout>

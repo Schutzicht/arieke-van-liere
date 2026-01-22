@@ -1,0 +1,117 @@
+---
+import Button from './ui/Button.astro';
+---
+
+<div id="lead-magnet-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+    <!-- Backdrop -->
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+    
+    <!-- Modal Content -->
+    <div id="modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+        <!-- Close Button -->
+        <button id="close-modal" class="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-900 bg-white/50 rounded-full hover:bg-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <div class="grid md:grid-cols-5 h-full">
+            <!-- Image Side -->
+            <div class="md:col-span-2 bg-brand-green/10 relative h-48 md:h-full">
+                 <img src="/assets/images/hero-arieke.jpg" alt="Arieke van Liere" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80" />
+                 <div class="absolute inset-0 bg-gradient-to-t from-brand-green/90 to-transparent md:bg-gradient-to-r"></div>
+                 <div class="absolute bottom-4 left-4 text-white font-display text-4xl leading-none">
+                    10<br>TIPS
+                 </div>
+            </div>
+
+            <!-- Content Side -->
+            <div class="md:col-span-3 p-8 flex flex-col justify-center">
+                <h3 class="font-display text-2xl text-gray-900 mb-2">Impactvol Event Organiseren?</h3>
+                <p class="text-sm text-gray-600 mb-6">
+                    Download mijn gratis gids met 10 praktische tips om jouw event onvergetelijk te maken.
+                </p>
+
+                <form class="space-y-3" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden'); this.classList.add('hidden');">
+                    <div>
+                        <input type="email" placeholder="Jouw e-mailadres" required class="w-full text-sm px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-pink focus:ring-0 outline-none transition-colors" />
+                    </div>
+                    <Button type="submit" variant="primary" class="w-full justify-center py-3 text-sm">
+                        Download PDF Direct
+                    </Button>
+                    <p class="text-[10px] text-gray-400 text-center">Ik deel je gegevens niet met derden.</p>
+                </form>
+
+                <div id="success-msg" class="hidden text-center py-4">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                        </svg>
+                    </div>
+                    <p class="font-bold text-gray-900">Bedankt!</p>
+                    <p class="text-sm text-gray-600 mb-4">De PDF is onderweg naar je inbox.</p>
+                    <button class="text-sm text-brand-pink underline" onclick="document.getElementById('close-modal').click()">Sluiten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById('lead-magnet-modal');
+    const backdrop = document.getElementById('modal-backdrop');
+    const content = document.getElementById('modal-content');
+    const closeBtn = document.getElementById('close-modal');
+
+    // Configuration
+    const SHOW_DELAY = 10000; // 10 seconds
+    const SCROLL_TRIGGER = 60; // 60% scroll
+    const STORAGE_KEY = 'arieke_lead_magnet_dimissed';
+
+    function showModal() {
+        if (localStorage.getItem(STORAGE_KEY)) return;
+        
+        modal?.classList.remove('hidden');
+        // Give browser time to un-hide before animating opacity
+        setTimeout(() => {
+            backdrop?.classList.remove('opacity-0');
+            content?.classList.remove('opacity-0', 'scale-95');
+            content?.classList.add('opacity-100', 'scale-100');
+        }, 10);
+    }
+
+    function closeModal() {
+        backdrop?.classList.remove('opacity-100');
+        content?.classList.remove('opacity-100', 'scale-100');
+        content?.classList.add('opacity-0', 'scale-95');
+        
+        setTimeout(() => {
+            modal?.classList.add('hidden');
+        }, 300);
+
+        // Don't show again in this session/day
+        localStorage.setItem(STORAGE_KEY, 'true');
+    }
+
+    // Trigger 1: Time
+    setTimeout(showModal, SHOW_DELAY);
+
+    // Trigger 2: Scroll
+    /*
+    window.addEventListener('scroll', () => {
+        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+        if (scrollPercent > SCROLL_TRIGGER) {
+            showModal();
+        }
+    }, { once: true });
+    */
+
+    closeBtn?.addEventListener('click', closeModal);
+    backdrop?.addEventListener('click', closeModal);
+    
+    // Debug helper: Allow reopening with ?popup=true
+    if (new URLSearchParams(window.location.search).get('popup')) {
+        localStorage.removeItem(STORAGE_KEY);
+        setTimeout(showModal, 1000);
+    }
+</script>
