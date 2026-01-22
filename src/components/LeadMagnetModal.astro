@@ -108,6 +108,11 @@ import Button from './ui/Button.astro';
     function showModal() {
         // PERMANENT DEBUG FOR CLIENT: Force show every time
         // if (localStorage.getItem(STORAGE_KEY)) return;
+        // Check if mobile menu is open (don't show popup over menu)
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+            return;
+        }
         
         modal?.classList.remove('hidden');
         document.body.classList.add('overflow-hidden'); // Lock scroll

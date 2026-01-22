@@ -152,7 +152,7 @@ body {
 
 .a11y-high-contrast #nav-container a,
 .a11y-high-contrast #nav-container .text-gray-800,
-.a11y-high-contrast #nav-container button:not(#a11y-trigger) {
+.a11y-high-contrast #nav-container button:not(.a11y-trigger) {
     color: #FFFF00 !important;
 }
 
@@ -165,31 +165,31 @@ body {
 }
 
 /* Dropdown Menu - styles */
-.a11y-high-contrast #a11y-menu {
+.a11y-high-contrast .a11y-menu {
     background-color: #000000 !important;
     border: 2px solid #FFFF00 !important;
 }
 
-.a11y-high-contrast #a11y-menu * {
+.a11y-high-contrast .a11y-menu * {
     color: #FFFF00 !important;
 }
 
-.a11y-high-contrast #a11y-menu button:hover {
+.a11y-high-contrast .a11y-menu button:hover {
     background-color: #FFFF00 !important;
 }
 
-.a11y-high-contrast #a11y-menu button:hover * {
+.a11y-high-contrast .a11y-menu button:hover * {
     color: #000000 !important;
 }
 
 /* Trigger Button - Inverted for Visibility (Yellow BG, Black Icon) */
-.a11y-high-contrast #a11y-trigger {
+.a11y-high-contrast .a11y-trigger {
     background-color: #FFFF00 !important;
     border: 2px solid #FFFFFF !important;
     color: #000000 !important;
 }
 
-.a11y-high-contrast #a11y-trigger svg {
+.a11y-high-contrast .a11y-trigger svg {
     stroke: #000000 !important;
 }
 
