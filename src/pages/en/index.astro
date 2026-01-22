@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+import Marquee from '../components/Marquee.astro';
+import BentoGrid from '../components/BentoGrid.astro';
+import QuoteSlider from '../components/QuoteSlider.astro';
+import InstagramFeed from '../components/InstagramFeed.astro';
+import BookingCTA from '../components/BookingCTA.astro';
+import Button from '../components/ui/Button.astro';
+
+// Logos for Marquee
+const mediaLogos = [
+    { src: '/assets/images/logos/ad.svg', alt: 'AD' },
+    { src: '/assets/images/logos/jinek.svg', alt: 'Jinek' },
+    { src: '/assets/images/logos/radio1.svg', alt: 'Radio 1' },
+    { src: '/assets/images/logos/nrc.svg', alt: 'NRC' },
+    { src: '/assets/images/logos/nos.svg', alt: 'NOS' },
+    { src: '/assets/images/logos/oneworld.svg', alt: 'OneWorld' },
+    { src: '/assets/images/logos/pzc.svg', alt: 'PZC' },
+];
+---
+
+<Layout title="Arieke van Liere - Movement Builder" lang="en">
+	<Header lang="en" />
+	
+	<main>
+		<Hero 
+            badge="Movement Builder"
+            title="WHO DO YOU WANT TO"
+            highlight="MOVE?"
+            subtitle="BRING INTO MOTION?" 
+            description="I am Arieke van Liere. Event Host, Presenter and Impact Maker. I set audiences, people and ideas in motion."
+            ctaPrimary="Book me now"
+            ctaSecondary="View expertise"
+            trustText="Satisfied clients preceded you"
+        />
+		
+        <!-- Media Marquee -->
+        <section class="py-12 bg-white border-b border-gray-100">
+            <div class="container-custom mb-4 text-center">
+                <p class="text-sm uppercase tracking-widest text-gray-400 font-semibold mb-8">Gezien in de media & vertrouwd door</p>
+            </div>
+            <Marquee items={mediaLogos} speed={50} />
+        </section>
+
+		<!-- Mission Statement -->
+		<!-- About / Mission Statement -->
+		<section class="py-16 md:py-32 bg-brand-green text-white relative overflow-hidden">
+             <div class="absolute inset-0 bg-[url('/assets/images/mosaic-pattern.svg')] opacity-10 bg-repeat bg-[length:50px_50px]"></div>
+			<div class="container-custom relative z-10 grid md:grid-cols-2 gap-16 items-center">
+                <div>
+				    <h2 class="text-3xl md:text-5xl font-display leading-tight mb-8">
+                        WHO IS ARIEKE?
+                    </h2>
+                    <div class="space-y-6 text-lg font-medium leading-relaxed">
+                        <p>
+                            Arieke is a movement builder with a passion for getting people moving for a green and fair world.
+                            She believes that stories, when seen by the right people, can change the world.
+                        </p>
+                        <p>
+                            That is why she creates and realizes media productions, events, and campaigns about the most important challenges of our time.
+                        </p>
+                        <p>
+                            She is passionate about topics such as <span class="font-bold text-white">climate, human rights, politics, feminism, diversity, inclusivity, LGBTQ+, culture, education</span> and much more.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="relative">
+                     <!-- Decorative quote/highlight element -->
+                    <div class="bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/20 transform md:rotate-3 shadow-2xl relative overflow-hidden">
+                        <!-- Brand Element: Wereldbol -->
+                        <img src="/assets/icons/brand/Wereldbol met paars groen zwart.png" alt="" class="absolute -top-4 -right-4 w-24 h-24 opacity-30 rotate-12 pointer-events-none" />
+                        
+                        <p class="font-display text-2xl md:text-3xl italic mb-4 relative z-10">
+                            "When seen by the right people, stories can change the world."
+                        </p>
+                    </div>
+                </div>
+			</div>
+		</section>
+
+        <!-- Expertise Bento Grid -->
+        <BentoGrid />
+
+        <!-- Quote Slider -->
+        <!-- Quote Slider -->
+        <section class="py-24 overflow-hidden relative">
+             <!-- Decorative Background Elements -->
+             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-pink/5 rounded-full blur-3xl -z-10"></div>
+             
+            <div class="container-custom mb-16 relative z-10">
+                <div class="flex flex-col md:flex-row justify-between items-end gap-8">
+                    <div class="max-w-2xl">
+                        <span class="inline-block px-3 py-1 mb-4 text-xs font-bold tracking-widest text-brand-pink uppercase bg-brand-pink/10 rounded-full">
+                            Ervaringen
+                        </span>
+                        <h2 class="text-5xl md:text-7xl font-display leading-[0.9]">
+                            IMPACT DIE <br>
+                            <span class="text-brand-green font-brush text-4xl md:text-6xl relative inline-block transform -rotate-2 mt-2">
+                                BLIJFT HANGEN
+                                <svg class="absolute w-full h-4 -bottom-2 left-0 text-brand-pink opacity-50" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="8" fill="none" /></svg>
+                            </span>
+                        </h2>
+                    </div>
+                    
+                    <div class="hidden md:block">
+                        <div class="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 rotate-3 hover:rotate-0 transition-transform duration-300">
+                             <div class="flex -space-x-3">
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80" />
+                                <img class="w-10 h-10 rounded-full border-2 border-white" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=100&q=80" />
+                                <div class="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold border-2 border-white">4.9/5</div>
+                             </div>
+                             <div class="text-xs font-bold text-gray-900">
+                                 <span class="block text-brand-pink text-lg leading-none">100%</span>
+                                 Tevredenheid
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <QuoteSlider />
+        </section>
+
+		<section class="py-16 md:py-32 bg-slate-50 relative" id="contact">
+            <!-- Decorative Elements -->
+            <div class="absolute top-0 right-0 w-64 h-64 bg-brand-pink/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand-green/10 rounded-full blur-3xl"></div>
+
+			<div class="container-custom max-w-5xl">
+                <div class="bg-white rounded-[3rem] p-12 shadow-2xl relative overflow-hidden">
+                    <div class="grid md:grid-cols-2 gap-16 relative z-10">
+                        <div>
+                            <span class="text-brand-pink font-bold tracking-widest uppercase text-sm mb-2 block">Let's connect</span>
+                            <div class="relative inline-block">
+                                <h2 class="text-5xl font-display mb-6 relative z-10">Klaar voor<br>Actie?</h2>
+                                <img src="/assets/icons/brand/Raket groen met zwart.png" alt="" class="absolute -top-8 -right-24 w-20 rotate-12 hidden md:block pointer-events-none" />
+                            </div>
+                            <p class="text-gray-600 mb-8 text-lg">
+                                Benieuwd wat ik voor jouw organisatie kan betekenen? Neem vrijblijvend contact op voor een kennismaking.
+                            </p>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-brand-green/10 rounded-full flex items-center justify-center text-brand-green">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                        </svg>
+                                    </div>
+                                    <a href="mailto:arieke@ariekevanliere.nl" class="text-lg font-medium hover:text-brand-pink transition-colors">arieke@ariekevanliere.nl</a>
+                                </div>
+                                 <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-brand-pink/10 rounded-full flex items-center justify-center text-brand-pink">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                        </svg>
+                                    </div>
+                                    <a href="tel:+31600000000" class="text-lg font-medium hover:text-brand-pink transition-colors">+31 (0)6 1234 5678</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form -->
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="sr-only">Naam</label>
+                                <input type="text" id="name" class="w-full rounded-xl bg-gray-50 border-transparent focus:border-brand-pink focus:bg-white focus:ring-0 p-4 transition-all" placeholder="Jouw naam">
+                            </div>
+                            <div>
+                                <label for="email" class="sr-only">Email</label>
+                                <input type="email" id="email" class="w-full rounded-xl bg-gray-50 border-transparent focus:border-brand-pink focus:bg-white focus:ring-0 p-4 transition-all" placeholder="Jouw email">
+                            </div>
+                            <div>
+                                <label for="message" class="sr-only">Bericht</label>
+                                <textarea id="message" rows="4" class="w-full rounded-xl bg-gray-50 border-transparent focus:border-brand-pink focus:bg-white focus:ring-0 p-4 transition-all" placeholder="Waar kan ik je mee helpen?"></textarea>
+                            </div>
+                             <Button type="submit" variant="primary" class="w-full justify-center py-4 text-lg">
+                                Verstuur bericht
+                            </Button>
+                        </form>
+                    </div>
+                </div>
+			</div>
+		</section>
+        
+        <InstagramFeed />
+
+        <BookingCTA />
+	</main>
+
+	<Footer />
+</Layout>

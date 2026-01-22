@@ -1,5 +1,16 @@
 ---
-import Button from './ui/Button.astro';
+import Button from './ui/Button.astro';const {
+    badge = "Bewegingsbouwer",
+    title = "WIE WIL JIJ",
+    highlight = "IN BEWEGING",
+    subtitle = "BRENGEN?",
+    description = "Ik ben Arieke van Liere. Dagvoorzitter, presentator en impactmaker. Ik zet zalen, mensen en ideeën in beweging.",
+    ctaPrimary = "Boek mij nu",
+    ctaSecondary = "Bekijk expertise",
+    trustText = "Tevreden opdrachtgevers gingen je voor",
+    experienceCount = "10+ JAAR",
+    experienceLabel = "Ervaring on stage"
+} = Astro.props;
 ---
 
 <section class="min-h-screen flex items-center relative overflow-hidden bg-slate-50" id="hero">
@@ -17,29 +28,28 @@ import Button from './ui/Button.astro';
         <!-- Typography -->
         <div class="space-y-8 animate-slide-up relative z-20">
             <span class="inline-block px-4 py-1.5 bg-brand-green text-white rounded-full text-base font-display tracking-wide uppercase shadow-lg shadow-brand-green/20">
-                Bewegingsbouwer
+                {badge}
             </span>
             
             <h1 class="text-4xl md:text-6xl lg:text-8xl font-display leading-[0.9] text-gray-900 tracking-tight">
-                WIE WIL JIJ<br>
-                <span class="relative inline-block text-brand-pink font-brush tracking-normal transform rotate-[-2deg] origin-center px-2 whitespace-nowrap">IN BEWEGING</span><br>
-                BRENGEN?
+                {title}<br>
+                <span class="relative inline-block text-brand-pink font-brush tracking-normal transform rotate-[-2deg] origin-center px-2 whitespace-nowrap">{highlight}</span><br>
+                {subtitle}
             </h1>
             
             <!-- Decorative Icon: Megafoon -->
             <img src="/assets/icons/brand/megafoon zwart met groen.png" alt="" class="absolute -top-12 -right-4 lg:-right-12 w-16 lg:w-24 rotate-12 animate-pulse-slow hidden md:block select-none pointer-events-none" />
             
             <p class="text-xl text-gray-600 max-w-lg leading-relaxed font-light">
-                Ik ben Arieke van Liere. Dagvoorzitter, presentator en impactmaker. 
-                Ik zet zalen, mensen en ideeën in beweging.
+                {description}
             </p>
             
             <div class="flex flex-wrap gap-4 pt-4">
                 <Button href="#contact" variant="primary" class="shadow-xl shadow-brand-pink/20 hover:scale-105">
-                    Boek mij nu
+                    {ctaPrimary}
                 </Button>
                 <Button href="#expertise" variant="outline" class="border-gray-900 text-gray-900 hover:bg-gray-900 hover:text-white">
-                    Bekijk expertise
+                    {ctaSecondary}
                 </Button>
             </div>
             
@@ -50,7 +60,7 @@ import Button from './ui/Button.astro';
                     <img class="w-10 h-10 rounded-full border-2 border-white object-cover" src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client 2" />
                     <div class="w-10 h-10 rounded-full bg-brand-green text-white flex items-center justify-center border-2 border-white">+200</div>
                 </div>
-                <span>Tevreden opdrachtgevers gingen je voor</span>
+                <span>{trustText}</span>
             </div>
         </div>
 
@@ -78,8 +88,8 @@ import Button from './ui/Button.astro';
             
             <!-- Front Layer (Floating Elements) -->
             <div class="parallax-layer absolute bottom-10 left-4 lg:bottom-20 lg:-left-10 z-20 bg-white p-4 lg:p-6 rounded-2xl shadow-xl max-w-[200px] lg:max-w-xs animate-bounce-slow" data-depth="0.6">
-                <p class="font-display text-xl lg:text-2xl text-brand-pink mb-1">10+ JAAR</p>
-                <p class="text-[10px] lg:text-xs text-gray-500 font-bold uppercase tracking-wider">Ervaring on stage</p>
+                <p class="font-display text-xl lg:text-2xl text-brand-pink mb-1">{experienceCount}</p>
+                <p class="text-[10px] lg:text-xs text-gray-500 font-bold uppercase tracking-wider">{experienceLabel}</p>
             </div>
 
             <div class="parallax-layer absolute top-40 right-0 z-0 opacity-50" data-depth="0.2">

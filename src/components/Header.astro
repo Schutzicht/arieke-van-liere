@@ -1,7 +1,14 @@
 ---
 import Button from './ui/Button.astro';
+import LanguageSwitch from './LanguageSwitch.astro';
 
-const navItems = [
+const { lang = 'nl' } = Astro.props;
+
+const navItems = lang === 'en' ? [
+  { name: 'Home', href: '/en' },
+  { name: 'Event Host', href: '#dagvoorzitter' },
+  { name: 'Contact', href: '#contact' },
+] : [
   { name: 'Home', href: '/' },
   { name: 'Dagvoorzitter', href: '#dagvoorzitter' },
   { name: 'Contact', href: '#contact' },
@@ -24,8 +31,12 @@ const navItems = [
             {item.name}
           </a>
         ))}
+        
+        <div class="border-l border-gray-200 h-6 mx-2"></div>
+        <LanguageSwitch />
+        
         <Button href="#contact" variant="primary" class="!py-2 !px-5 text-xs uppercase tracking-wide">
-          Samenwerken
+          {lang === 'en' ? 'Collaborate' : 'Samenwerken'}
         </Button>
       </nav>
 

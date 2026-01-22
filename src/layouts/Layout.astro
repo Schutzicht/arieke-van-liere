@@ -5,13 +5,14 @@ import LeadMagnetModal from '../components/LeadMagnetModal.astro';
 interface Props {
 	title: string;
 	description?: string;
+    lang?: 'nl' | 'en';
 }
 
-const { title, description = "Arieke van Liere - Bewegingsbouwer" } = Astro.props;
+const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -25,6 +26,9 @@ const { title, description = "Arieke van Liere - Bewegingsbouwer" } = Astro.prop
 		<title>{title}</title>
 	</head>
 	<body class="antialiased min-h-screen flex flex-col">
+        <slot name="header">
+		    <Header lang={lang} />
+        </slot>
 		<slot />
 		<LeadMagnetModal />
 	</body>
