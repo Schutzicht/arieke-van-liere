@@ -33,8 +33,8 @@ import Button from './ui/Button.astro';const {
             
             <h1 class="text-4xl md:text-6xl lg:text-8xl font-display leading-[0.9] text-gray-900 tracking-tight">
                 {title}<br>
-                <span class="relative inline-block text-brand-pink font-brush tracking-normal transform rotate-[-2deg] origin-center px-2 whitespace-nowrap">{highlight}</span><br>
-                {subtitle}
+                <span class="relative inline-block text-brand-pink font-brush tracking-normal transform rotate-[-2deg] origin-center px-2 whitespace-nowrap">{highlight}</span>
+                {subtitle && <br>{subtitle}}
             </h1>
             
             <!-- Decorative Icon: Megafoon -->
