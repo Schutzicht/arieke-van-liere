@@ -2,48 +2,58 @@
 import Button from './ui/Button.astro';
 ---
 
-<div id="lead-magnet-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4">
+<div id="lead-magnet-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center px-4 perspective-1000">
     <!-- Backdrop -->
-    <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
+    <div id="modal-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-500 opacity-0"></div>
     
-    <!-- Modal Content -->
-    <div id="modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 opacity-0 transition-all duration-300">
+    <!-- Modal Content (3D Container) -->
+    <div id="modal-content" class="relative bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-90 opacity-0 transition-all duration-500 will-change-transform preserve-3d group" style="transform-style: preserve-3d;">
+        
         <!-- Close Button -->
-        <button id="close-modal" class="absolute top-4 right-4 z-10 p-2 text-gray-400 hover:text-gray-900 bg-white/50 rounded-full hover:bg-white transition-colors">
+        <button id="close-modal" class="absolute top-4 right-4 z-20 p-2 text-gray-400 hover:text-gray-900 bg-white/50 hover:bg-white rounded-full transition-colors translate-z-20">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
 
         <div class="grid md:grid-cols-5 h-full">
-            <!-- Image Side -->
-            <div class="md:col-span-2 bg-brand-green/10 relative h-48 md:h-full">
-                 <img src="/assets/images/hero-arieke.jpg" alt="Arieke van Liere" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80" />
+            <!-- Image Side with Parallax -->
+            <div class="md:col-span-2 bg-brand-green/10 relative h-48 md:h-full overflow-hidden">
+                 <div class="absolute inset-0 w-full h-full transform scale-110 transition-transform duration-100" id="magnet-image">
+                    <img src="/assets/images/hero-arieke.jpg" alt="Arieke van Liere" class="w-full h-full object-cover mix-blend-overlay opacity-80" />
+                 </div>
                  <div class="absolute inset-0 bg-gradient-to-t from-brand-green/90 to-transparent md:bg-gradient-to-r"></div>
-                 <div class="absolute bottom-4 left-4 text-white font-display text-4xl leading-none">
-                    10<br>TIPS
+                 
+                 <!-- Floating Text Element -->
+                 <div class="absolute bottom-4 left-4 text-white font-display text-4xl leading-none z-10 transform translate-z-30 transition-transform duration-100" id="magnet-text">
+                    <span class="block text-brand-pink drop-shadow-lg">10</span>
+                    <span class="block drop-shadow-md">TIPS</span>
                  </div>
             </div>
 
             <!-- Content Side -->
-            <div class="md:col-span-3 p-8 flex flex-col justify-center">
-                <h3 class="font-display text-2xl text-gray-900 mb-2">Impactvol Event Organiseren?</h3>
-                <p class="text-sm text-gray-600 mb-6">
+            <div class="md:col-span-3 p-8 flex flex-col justify-center bg-white relative z-10">
+                <h3 class="font-display text-2xl text-gray-900 mb-2 transform translate-z-10">Impactvol Event?</h3>
+                <p class="text-sm text-gray-600 mb-6 transform translate-z-10">
                     Download mijn gratis gids met 10 praktische tips om jouw event onvergetelijk te maken.
                 </p>
 
-                <form class="space-y-3" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden'); this.classList.add('hidden');">
-                    <div>
-                        <input type="email" placeholder="Jouw e-mailadres" required class="w-full text-sm px-4 py-3 rounded-xl border border-gray-200 focus:border-brand-pink focus:ring-0 outline-none transition-colors" />
+                <form class="space-y-3 relative z-20" onsubmit="event.preventDefault(); document.getElementById('success-msg').classList.remove('hidden'); this.classList.add('hidden');">
+                    <div class="relative group/input">
+                         <div class="absolute -inset-0.5 bg-gradient-to-r from-brand-pink to-brand-green rounded-xl opacity-0 group-hover/input:opacity-75 transition duration-500 blur"></div>
+                        <input type="email" placeholder="Jouw e-mailadres" required class="relative w-full text-sm px-4 py-3 rounded-xl border border-gray-200 focus:border-transparent focus:ring-0 outline-none bg-white transition-all" />
                     </div>
-                    <Button type="submit" variant="primary" class="w-full justify-center py-3 text-sm">
-                        Download PDF Direct
+                    
+                    <Button type="submit" variant="primary" class="w-full justify-center py-3 text-sm relative overflow-hidden group/btn shadow-lg shadow-brand-pink/20">
+                        <span class="relative z-10 group-hover/btn:scale-105 transition-transform">Download PDF Direct</span>
+                        <div class="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover/btn:animate-shimmer"></div>
                     </Button>
+                    
                     <p class="text-[10px] text-gray-400 text-center">Ik deel je gegevens niet met derden.</p>
                 </form>
 
-                <div id="success-msg" class="hidden text-center py-4">
-                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                <div id="success-msg" class="hidden text-center py-4 animate-fade-in">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3 animate-bounce">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                         </svg>
@@ -57,40 +67,51 @@ import Button from './ui/Button.astro';
     </div>
 </div>
 
+<style>
+    .perspective-1000 {
+        perspective: 1000px;
+    }
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+    .translate-z-10 {
+        transform: translateZ(10px);
+    }
+    .translate-z-20 {
+        transform: translateZ(20px);
+    }
+    .translate-z-30 {
+        transform: translateZ(30px);
+    }
+    @keyframes shimmer {
+        100% {
+            transform: skewX(-12deg) translateX(200%);
+        }
+    }
+    .group-hover\/btn\:animate-shimmer {
+        animation: shimmer 1s;
+    }
+</style>
+
 <script>
     const modal = document.getElementById('lead-magnet-modal');
     const backdrop = document.getElementById('modal-backdrop');
     const content = document.getElementById('modal-content');
     const closeBtn = document.getElementById('close-modal');
+    const magnetImage = document.getElementById('magnet-image');
+    const magnetText = document.getElementById('magnet-text');
 
     // Configuration
-    const SHOW_DELAY = 3000; // 3 seconds
-    const SCROLL_TRIGGER = 60; // 60% scroll
+    const SHOW_DELAY = 5000; // 5 seconds
     const STORAGE_KEY = 'arieke_lead_magnet_dimissed';
 
     function showModal() {
-        console.log('LeadMagnet: Attempting to show modal...');
-        // FOR DEBUGGING: Commented out storage check
-        // if (localStorage.getItem(STORAGE_KEY)) {
-        //    console.log('LeadMagnet: Suppressed by localStorage');
-        //    return;
-        // }
+        if (localStorage.getItem(STORAGE_KEY)) return;
         
-        const modal = document.getElementById('lead-magnet-modal');
-        const backdrop = document.getElementById('modal-backdrop');
-        const content = document.getElementById('modal-content');
-
-        if (!modal) {
-             console.error('LeadMagnet: Modal element not found!');
-             return;
-        }
-
-        console.log('LeadMagnet: Showing modal now!');
-        modal.classList.remove('hidden');
-        // Give browser time to un-hide before animating opacity
+        modal?.classList.remove('hidden');
         setTimeout(() => {
             backdrop?.classList.remove('opacity-0');
-            content?.classList.remove('opacity-0', 'scale-95');
+            content?.classList.remove('opacity-0', 'scale-90');
             content?.classList.add('opacity-100', 'scale-100');
         }, 10);
     }
@@ -98,32 +119,72 @@ import Button from './ui/Button.astro';
     function closeModal() {
         backdrop?.classList.remove('opacity-100');
         content?.classList.remove('opacity-100', 'scale-100');
-        content?.classList.add('opacity-0', 'scale-95');
+        content?.classList.add('opacity-0', 'scale-90');
         
         setTimeout(() => {
             modal?.classList.add('hidden');
-        }, 300);
+        }, 500);
 
-        // Don't show again in this session/day
         localStorage.setItem(STORAGE_KEY, 'true');
     }
 
-    // Trigger 1: Time
-    setTimeout(showModal, SHOW_DELAY);
+    // 3D Tilt Effect
+    content?.addEventListener('mousemove', (e) => {
+        const rect = content.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg rotation
+        const rotateY = ((x - centerX) / centerX) * 5;
 
-    // Trigger 2: Scroll
-    /*
-    window.addEventListener('scroll', () => {
-        const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-        if (scrollPercent > SCROLL_TRIGGER) {
-            showModal();
+        // Apply rotation to card
+        content.style.transform = `scale(1) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+        // Parallax effect on inner elements
+        if (magnetImage) {
+            const moveX = ((x - centerX) / centerX) * -10;
+            const moveY = ((y - centerY) / centerY) * -10;
+            magnetImage.style.transform = `scale(1.1) translateX(${moveX}px) translateY(${moveY}px)`;
         }
-    }, { once: true });
-    */
+        
+        if (magnetText) {
+            const moveX = ((x - centerX) / centerX) * 20; // Move opposite/more for depth
+            const moveY = ((y - centerY) / centerY) * 20;
+            magnetText.style.transform = `translateZ(30px) translateX(${moveX}px) translateY(${moveY}px)`;
+        }
+    });
+
+    // Reset on mouse leave
+    content?.addEventListener('mouseleave', () => {
+        // Smooth reset via CSS transition
+        content.style.transition = 'transform 0.5s ease-out';
+        content.style.transform = `scale(1) perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+        
+        if (magnetImage) {
+             magnetImage.style.transition = 'transform 0.5s ease-out';
+             magnetImage.style.transform = `scale(1.1) translateX(0) translateY(0)`;
+        }
+        if (magnetText) {
+             magnetText.style.transition = 'transform 0.5s ease-out';
+             magnetText.style.transform = `translateZ(30px) translateX(0) translateY(0)`;
+        }
+
+        // Remove transition after it's done so mousemove is snappy again
+        setTimeout(() => {
+            content.style.transition = '';
+            if (magnetImage) magnetImage.style.transition = '';
+            if (magnetText) magnetText.style.transition = '';
+        }, 500);
+    });
+
+    setTimeout(showModal, SHOW_DELAY);
 
     closeBtn?.addEventListener('click', closeModal);
     backdrop?.addEventListener('click', closeModal);
-    
+
     // Debug helper: Allow reopening with ?popup=true
     if (new URLSearchParams(window.location.search).get('popup')) {
         localStorage.removeItem(STORAGE_KEY);
