@@ -8,9 +8,10 @@ interface Props {
 	title: string;
 	description?: string;
     lang?: 'nl' | 'en';
+    hidePopups?: boolean;
 }
 
-const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl' } = Astro.props;
+const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl', hidePopups = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -37,6 +38,6 @@ const { title, description = "Arieke van Liere - Bewegingsbouwer", lang = 'nl' }
 		    <Header lang={lang} />
         </slot>
 		<slot />
-		<LeadMagnetModal />
+		{!hidePopups && <LeadMagnetModal />}
 	</body>
 </html>

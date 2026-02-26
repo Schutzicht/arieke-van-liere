@@ -1,16 +1,13 @@
 ---
 import Button from './ui/Button.astro';
-import LanguageSwitch from './LanguageSwitch.astro';
-import AccessibilityWidget from './AccessibilityWidget.astro';
+import Button from './ui/Button.astro';
 
 const { lang = 'nl' } = Astro.props;
 
 const navItems = lang === 'en' ? [
-  { name: 'Home', href: '/en' },
   { name: 'Event Host', href: '#dagvoorzitter' },
   { name: 'Contact', href: '#contact' },
 ] : [
-  { name: 'Home', href: '/' },
   { name: 'Dagvoorzitter', href: '#dagvoorzitter' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -19,7 +16,7 @@ const navItems = lang === 'en' ? [
 <header class="fixed w-full top-4 z-50 transition-all duration-300 pointer-events-none" id="main-header">
   <div class="container-custom flex items-center justify-center">
     <div class="bg-white/80 backdrop-blur-xl shadow-lg border border-white/20 rounded-full px-8 py-3 pointer-events-auto flex items-center gap-12 w-auto transition-all duration-300" id="nav-container">
-      <a href="/" class="block w-28 text-black shrink-0 filter brightness-0">
+      <a href="https://ariekevanliere.nl" class="block w-28 text-black shrink-0 filter brightness-0">
         <img src="/assets/images/logo-full.svg" alt="Arieke van Liere" class="w-full h-auto" />
       </a>
 
@@ -32,14 +29,6 @@ const navItems = lang === 'en' ? [
             {item.name}
           </a>
         ))}
-        
-        <div class="border-l border-gray-200 h-6 mx-2"></div>
-        <AccessibilityWidget />
-        <LanguageSwitch />
-        
-        <Button href="#contact" variant="primary" class="!py-2 !px-5 text-xs uppercase tracking-wide">
-          {lang === 'en' ? 'Collaborate' : 'Samenwerken'}
-        </Button>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -64,15 +53,6 @@ const navItems = lang === 'en' ? [
         {item.name}
       </a>
     ))}
-
-    <div class="flex items-center gap-6 mt-4">
-        <AccessibilityWidget alignment="center" />
-        <LanguageSwitch />
-    </div>
-
-    <Button href="#contact" variant="primary" class="!py-2 !px-6 text-sm uppercase tracking-wide">
-        {lang === 'en' ? 'Collaborate' : 'Samenwerken'}
-    </Button>
   </div>
 </header>
 

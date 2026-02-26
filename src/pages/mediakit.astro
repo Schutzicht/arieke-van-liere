@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/ui/Button.astro';
+
+const photos = [
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator1.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator2.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator3.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator4.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator6.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator7.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator8.jpeg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator9.jpg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator10.jpg",
+    "Mediakit Arieke van Liere Dagvoorzitter Presentator11.jpg"
+];
+
+const photoDir = "/swisstransfer_ef3120bf-ea70-403e-a23e-635252462a5d";
+---
+
+<Layout title="Mediakit - Arieke van Liere" description="Mediakit met persfoto's en teksten van Arieke van Liere. Vrij te downloaden en te gebruiken." hidePopups={true}>
+    <main class="bg-slate-50 min-h-screen">
+        <!-- 1. Header -->
+        <section class="relative pt-32 pb-16 md:py-48 overflow-hidden bg-brand-green text-white">
+            <div class="absolute inset-0 z-0">
+                <img 
+                    src={`${photoDir}/Mediakit Arieke van Liere Dagvoorzitter Presentator2.jpeg`} 
+                    alt="Arieke van Liere" 
+                    class="w-full h-full object-cover opacity-30 object-top"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-green to-transparent opacity-90"></div>
+            </div>
+            
+            <div class="container-custom relative z-10 max-w-4xl text-center">
+                <span class="inline-block px-3 py-1 mb-6 text-xs font-bold tracking-widest text-[#FFFF00] uppercase bg-black/20 rounded-full backdrop-blur-sm">
+                    Pers & Media
+                </span>
+                <h1 class="text-4xl md:text-6xl font-display leading-tight mb-6">
+                    Mediakit <span class="font-brush text-5xl md:text-7xl block text-white mt-2 transform -rotate-1">Arieke van Liere</span>
+                </h1>
+                <p class="text-lg md:text-xl font-medium leading-relaxed max-w-2xl mx-auto opacity-90">
+                    Deze mediakit bevat foto's en teksten om te delen. Al het materiaal is vrij te downloaden en te gebruiken. Bronvermelding is altijd: <strong class="text-white">Arieke van Liere</strong>.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Persfoto's -->
+        <section class="py-16 md:py-24 bg-white relative">
+            <div class="container-custom">
+                <div class="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mb-12">
+                     <div>
+                        <h2 class="text-3xl md:text-4xl font-display mb-4">Persfoto's</h2>
+                        <p class="text-gray-600 max-w-2xl">
+                            Een mix van horizontale en verticale foto's, ideaal voor aankondigingen, artikelen en programmaboekjes.
+                        </p>
+                     </div>
+                     <div class="shrink-0">
+                         <a href="/downloads/arieke-mediakit-fotos.zip" download class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-pink text-white rounded-full font-bold hover:bg-pink-600 hover:scale-105 transition-all shadow-lg hover:shadow-xl">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                            </svg>
+                            Download alle foto's (ZIP)
+                         </a>
+                     </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                    {photos.map((photo, index) => (
+                        <button type="button" data-photo={`${photoDir}/${photo}`} class={`lightbox-trigger group relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 shadow-sm hover:shadow-md transition-all ${index === 0 || index === 3 ? 'md:col-span-2 aspect-[4/3] md:aspect-auto' : ''}`}>
+                            <img 
+                                src={`${photoDir}/${photo}`} 
+                                alt={`Persfoto Arieke van Liere ${index + 1}`} 
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                loading="lazy"
+                            />
+                            <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <span class="bg-white text-gray-900 px-4 py-2 rounded-full text-sm font-bold flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                                    </svg>
+                                    Bekijk groot
+                                </span>
+                            </div>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Teksten om te delen -->
+        <section class="py-16 md:py-24 bg-slate-50 border-t border-gray-100">
+            <div class="container-custom max-w-4xl">
+                <div class="mb-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-display mb-4">Teksten om te delen</h2>
+                    <p class="text-gray-600">
+                        De teksten hieronder zijn vrij over te nemen ter promotie van het event. Wil je de tekst aanpassen? Neem dan even contact op via <a href="mailto:info@ariekevanliere.nl" class="text-brand-pink font-semibold hover:underline border-b border-transparent hover:border-brand-pink transition-colors pb-0.5">info@ariekevanliere.nl</a> voor akkoord.
+                    </p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Biografie -->
+                    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative group">
+                        <div class="absolute -left-4 -top-4 w-12 h-12 bg-brand-green text-white rounded-2xl flex items-center justify-center font-display text-xl shadow-lg transform -rotate-6">
+                            A
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6 flex items-center justify-between">
+                            Korte biografie
+                        </h3>
+                        
+                        <div class="prose prose-lg text-gray-700 leading-relaxed max-w-none">
+                            <p>Arieke van Liere (1992) is dagvoorzitter en Bewegingsbouwer. Ze werkt aan een groene, gezonde en eerlijke wereld door gesprekken te begeleiden die richting geven aan maatschappelijke verandering. Arieke vertaalt complexe thema's naar begrijpelijke verhalen die raken en activeren. Ze brengt structuur, scherpte en energie in congressen, debatten, talkshows en festivals. Met haar open stijl en scherpe vragen zorgt ze dat verschillende perspectieven samenkomen en dat gesprekken niet alleen inspireren, maar ook verder helpen.</p>
+                            <p>De afgelopen jaren werkte zij samen met meer dan 250 organisaties, waaronder de Nationale Klimaatweek, SDG Action Day (VN), het Ministerie van Volksgezondheid, Welzijn en Sport en Bevrijdingsfestival Zeeland. Arieke beweegt zich op het snijvlak van maatschappelijke transities, met thema's als klimaat, zorg, inclusie en technologie. Daarnaast is zij Klimaatburgemeester van de Provincie Zeeland.</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Media -->
+                    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-gray-100 relative group">
+                         <div class="absolute -left-4 -top-4 w-12 h-12 bg-brand-pink text-white rounded-2xl flex items-center justify-center font-display text-xl shadow-lg transform rotate-6">
+                            B
+                        </div>
+                        <h3 class="text-2xl font-bold mb-6">Social media aankondiging</h3>
+                        
+                        <div class="prose prose-lg text-gray-700 leading-relaxed max-w-none bg-slate-50 p-6 rounded-2xl border border-slate-100 whitespace-pre-line font-medium">
+Maak kennis met onze dagvoorzitter: Arieke van Liere 🎤 ✨
+
+@ariekevanliere stond de afgelopen jaren op het podium bij meer dan 250 organisaties die werken aan een groene en eerlijke wereld. Met haar motto "geen praatjes maar daadjes" brengt ze energie, scherpe vragen en gesprekken die ergens naartoe gaan. Arieke maakt complexe thema’s begrijpelijk en zorgt dat het niet bij woorden blijft. Wij zijn blij dat zij [eventnaam] begeleidt!
+
+📅 [datum] | [locatie]
+Heb jij je al aangemeld? 👉 [link]
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 uppercase tracking-widest font-bold">Vergeet niet @ariekevanliere te taggen!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/90 hidden items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-brand-pink transition-colors w-12 h-12 flex items-center justify-center bg-black/50 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Arieke van Liere Persfoto" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300" />
+    </div>
+
+    <script>
+        const triggers = document.querySelectorAll('.lightbox-trigger');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
+        const closeBtn = document.getElementById('lightbox-close');
+
+        function openLightbox(src: string) {
+            if (!lightbox || !lightboxImg) return;
+            lightboxImg.src = src;
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            // Small delay to allow display flex to apply before opacity fade
+            setTimeout(() => {
+                lightbox.classList.remove('opacity-0');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            if (!lightbox || !lightboxImg) return;
+            lightbox.classList.add('opacity-0');
+            lightboxImg.classList.remove('scale-100');
+            lightboxImg.classList.add('scale-95');
+            setTimeout(() => {
+                lightbox.classList.remove('flex');
+                lightbox.classList.add('hidden');
+                lightboxImg.src = '';
+            }, 300);
+            document.body.style.overflow = '';
+        }
+
+        triggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const src = trigger.getAttribute('data-photo');
+                if (src) openLightbox(src);
+            });
+        });
+
+        closeBtn?.addEventListener('click', closeLightbox);
+        
+        lightbox?.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !lightbox?.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</Layout>
