@@ -1,0 +1,89 @@
+---
+const { lang = 'nl' } = Astro.props;
+
+const navItems = lang === 'en' ? [
+  { name: 'Home', href: 'https://ariekevanliere.nl/' },
+  { name: 'Event Host', href: 'https://ariekevanliere.nl/dagvoorzitter/' },
+  { name: 'Contact', href: 'https://ariekevanliere.nl/contact/' },
+] : [
+  { name: 'Home', href: 'https://ariekevanliere.nl/' },
+  { name: 'Dagvoorzitter', href: 'https://ariekevanliere.nl/dagvoorzitter/' },
+  { name: 'Contact', href: 'https://ariekevanliere.nl/contact/' },
+];
+---
+
+<header class="w-full bg-white z-50 shadow-sm" id="main-header">
+  <div class="container-custom flex items-center justify-between py-4">
+    <!-- Phone number (left) -->
+    <a href="tel:+31646677321" class="hidden md:flex items-center gap-2 text-sm font-medium text-gray-800 hover:text-brand-pink transition-colors">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 text-brand-pink">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+      </svg>
+      +31 6 466 77 321
+    </a>
+
+    <!-- Logo (center) -->
+    <a href="https://ariekevanliere.nl" class="block">
+      <img src="/assets/images/logo-full.svg" alt="Arieke van Liere" class="h-8 md:h-10 w-auto filter brightness-0" />
+    </a>
+
+    <!-- Navigation (right, desktop) -->
+    <nav class="hidden md:flex items-center gap-8 text-sm font-bold uppercase tracking-wide">
+      {navItems.map(item => (
+        <a 
+          href={item.href} 
+          class="text-gray-900 hover:text-brand-pink transition-colors"
+        >
+          {item.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden text-gray-800 p-2" aria-label="Menu" id="mobile-menu-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 md:hidden flex flex-col items-center justify-center gap-8" id="mobile-menu">
+    <button class="absolute top-6 right-6 p-2" id="close-menu-btn" aria-label="Sluit menu">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    
+    {navItems.map(item => (
+      <a href={item.href} class="text-2xl font-bold text-gray-900 hover:text-brand-pink uppercase tracking-wide">
+        {item.name}
+      </a>
+    ))}
+
+    <a href="tel:+31646677321" class="flex items-center gap-2 text-lg font-medium text-brand-pink mt-4">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+      </svg>
+      +31 6 466 77 321
+    </a>
+  </div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function toggleMenu() {
+    mobileMenu?.classList.toggle('translate-x-full');
+    document.body.classList.toggle('overflow-hidden');
+  }
+
+  menuBtn?.addEventListener('click', toggleMenu);
+  closeBtn?.addEventListener('click', toggleMenu);
+  
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+  });
+</script>
